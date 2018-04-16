@@ -378,7 +378,7 @@ namespace UnitTests
 
             Move move = bot.GetMove(state);
 
-            // X wins
+            // X moved to row 6 and col 7
             Assert.IsTrue(move.X == 7 && move.Y == 6 && move.Score == 10,
                 "Actual move is " + move + " and score = " + move.Score);
         }
