@@ -44,10 +44,10 @@ namespace UltimateTicTacToeMinimax.Bot
 
             if(gameState == UltimateBoard.GameStatus.OWon)
             {
-                return new Move { Score = -10 };
+                return new Move { Score = -100 };
             }else if (gameState == UltimateBoard.GameStatus.XWon)
             {
-                return new Move { Score = 10 };
+                return new Move { Score = 100 };
             }else if(gameState == UltimateBoard.GameStatus.Tie)
             {
                 return new Move { Score = 0 };
@@ -57,7 +57,7 @@ namespace UltimateTicTacToeMinimax.Bot
             if(level == 4)
             {
                 int score = state.UltimateBoard.GetScore();
-               // return new Move { Score = score };
+                return new Move { Score = score };
             }
 
             // For eac available move
@@ -76,8 +76,8 @@ namespace UltimateTicTacToeMinimax.Bot
                 state.UltimateBoard.MakeMove(move, player);
 
 
-                StreamWriter sw = File.AppendText(@"C:\\Users\\dgillespie\\Desktop\\output.txt");
-                sw.WriteLine(level);
+                //StreamWriter sw = File.AppendText(@"C:\\Users\\dgillespie\\Desktop\\output.txt");
+                //sw.WriteLine(level);
 
                 //Score each move by calling Minimax with the
                 // opposite player
@@ -93,20 +93,20 @@ namespace UltimateTicTacToeMinimax.Bot
 
 
                 // Basic tree pruning.
-                if (player == UltimateBoard.PlayerX)
+                /*if (player == UltimateBoard.PlayerX)
                 {
-                    if(move.Score == 10)
+                    if(move.Score == 100)
                     {
                         return move;
                     }
                 }
                 else
                 {
-                    if(move.Score == -10)
+                    if(move.Score == -100)
                     {
                         return move;
                     }
-                }
+                }*/
 
 
                 //Revert board to original state

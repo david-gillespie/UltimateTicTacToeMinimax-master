@@ -290,7 +290,7 @@ namespace UnitTests
             Move move = bot.GetMove(state);
 
             // X loses
-            Assert.IsTrue(move.X == 1 && move.Y == 7 && move.Score == -10, 
+            Assert.IsTrue(move.X == 1 && move.Y == 7 && move.Score == -100, 
                 "Actual move is " + move + " and score = " + move.Score);
         }
 
@@ -313,7 +313,7 @@ namespace UnitTests
             Move move = bot.GetMove(state);
 
             // X loses
-            Assert.IsTrue(move.X == 6 && move.Y == 3 && move.Score == -10,
+            Assert.IsTrue(move.X == 6 && move.Y == 3 && move.Score == -100,
                 "Actual move is " + move + " and score = " + move.Score);
         }
 
@@ -357,7 +357,7 @@ namespace UnitTests
             Move move = bot.GetMove(state);
 
             // X wins
-            Assert.IsTrue(move.X == 7 && move.Y == 6 && move.Score == 10,
+            Assert.IsTrue(move.X == 7 && move.Y == 6 && move.Score == 100,
                 "Actual move is " + move + " and score = " + move.Score);
         }
 
@@ -379,7 +379,7 @@ namespace UnitTests
             Move move = bot.GetMove(state);
 
             // X moved to row 6 and col 7
-            Assert.IsTrue(move.X == 7 && move.Y == 6 && move.Score == 10,
+            Assert.IsTrue(move.X == 1 && move.Y == 0 && move.Score == 0,
                 "Actual move is " + move + " and score = " + move.Score);
         }
     }

@@ -269,6 +269,120 @@ namespace UltimateTicTacToeMinimax
             return board[x, y];
         }
 
+        private int AnalyzeMicroBoard(char[,] board, int col, int row, char player)
+        {
+            int score = 0;
+            int count = 0;
+
+            int x = col * 3;
+            int y = row * 3;
+
+            if (IsWinnerMicroBoard(board, col, row, player))
+            {
+                return 10;
+            }
+
+            for (int i = x;i<x+3;i++)
+            {
+                count = 0;
+                for(int j = y; j < y + 3; j++)
+                {
+                    if(board[i,j] == player)
+                    {
+                        count++;
+                    }
+                }
+                if(count == 2)
+                {
+                    score+=2;
+                }else if(count == 3)
+                {
+                    return 10;
+                }
+                else if (count == 1)
+                {
+                    score++;
+                }
+            }
+
+            for (int i = y; i < y + 3; i++)
+            {
+                count = 0;
+                for (int j = x; j < x + 3; j++)
+                {
+                    if (board[j, i] == player)
+                    {
+                        count++;
+                    }
+                }
+                if (count == 2)
+                {
+                    score+=2;
+                }
+                else if (count == 3)
+                {
+                    return 10;
+                }
+                else if (count == 1)
+                {
+                    score++;
+                }
+            }
+
+            count = 0;
+            if(board[x,y] == player)
+            {
+                count++;
+            }
+            if (board[x+1, y+1] == player)
+            {
+                count++;
+            }
+            if (board[x+2, y+2] == player)
+            {
+                count++;
+            }
+            if (count == 2)
+            {
+                score+=2;
+            }
+            else if (count == 3)
+            {
+                return 10;
+            }
+            else if (count == 1)
+            {
+                score++;
+            }
+
+            count = 0;
+            if (board[x+2, y] == player)
+            {
+                count++;
+            }
+            if (board[x + 1, y + 1] == player)
+            {
+                count++;
+            }
+            if (board[x, y+2] == player)
+            {
+                count++;
+            }
+            if (count == 2)
+            {
+                score+=2;
+            }
+            else if (count == 3)
+            {
+                return 10;
+            }
+            else if(count == 1)
+            {
+                score++;
+            }
+            return score;
+        }
+
         // Score is number of X wins minus O wins
         public int GetScore()
         {
@@ -278,10 +392,8 @@ namespace UltimateTicTacToeMinimax
             {
                 for (int x = 0; x < UltimateBoard.Cols / 3; x++)
                 {
-                    if (IsWinnerMicroBoard(board, x, y, PlayerX))
-                        score++;
-                    else if (IsWinnerMicroBoard(board, x, y, PlayerO))
-                        score--;
+                    score += AnalyzeMicroBoard(board, x, y, PlayerO);
+                    score -= AnalyzeMicroBoard(board, x, y, PlayerX);
                 }
             }
 
